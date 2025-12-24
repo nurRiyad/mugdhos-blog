@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Brain, Microscope, Heart, Sparkles, ChevronRight } from 'lucide-react';
 
@@ -29,7 +28,7 @@ const FUTURE_ITEMS = [
 
 export default function FutureSection() {
   return (
-    <section id="future" className="py-20 px-4 sm:px-6 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+    <section id="future" className="py-20 px-4 sm:px-6 bg-linear-to-br from-slate-900 to-slate-800 text-white">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

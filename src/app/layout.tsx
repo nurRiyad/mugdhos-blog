@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://learn-with-mugdho.vercel.app"),
   title: {
     default: "Mugdho's Medical Journey | HSC & Medical Admission Guide",
     template: "%s | Mugdho's Medical Journey",

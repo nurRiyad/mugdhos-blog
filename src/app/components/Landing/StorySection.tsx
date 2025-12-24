@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Brain, Trophy } from 'lucide-react';
 
@@ -74,7 +73,7 @@ export default function StorySection() {
                 className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200"
               >
                 <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 ${COLOR_MAP[item.color].bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                  <div className={`w-12 h-12 ${COLOR_MAP[item.color].bg} rounded-xl flex items-center justify-center shrink-0`}>
                     <item.icon className={`w-6 h-6 ${COLOR_MAP[item.color].text}`} />
                   </div>
                   <div className="space-y-2">
