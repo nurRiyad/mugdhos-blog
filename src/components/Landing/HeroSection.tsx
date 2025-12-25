@@ -80,7 +80,7 @@ export default function HeroSection() {
                 Hi, I&apos;m <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Mugdho</span>
               </h1>
               <p className="text-xl sm:text-2xl text-slate-600 leading-relaxed max-w-lg">
-                A medical student at Sir Salimullah Medical College (All Bangladesh rank: 344, session 2025–2026) and Ex-DU Botany. Turning struggles into strategies, confusion into clarity, and dreams into reality.
+                A medical student at Sir Salimullah Medical College (All Bangladesh rank: 344, session 2025–2026) and Ex-DU Botany.
               </p>
             </motion.div>
 
@@ -111,7 +111,7 @@ export default function HeroSection() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
-                href="/#journey"
+                href="/#story"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 rounded-xl font-semibold border-2 border-slate-200 hover:border-slate-300 transition-all"
               >
                 Explore journey
