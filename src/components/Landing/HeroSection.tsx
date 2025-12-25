@@ -5,7 +5,13 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Stethoscope, BookOpen, Heart, ArrowRight } from 'lucide-react';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  heroTitle: string
+  heroSubtitle: string
+  heroContent: string
+}
+
+export default function HeroSection({ heroTitle, heroSubtitle, heroContent }: HeroSectionProps) {
   return (
     <section className="relative pt-32 pb-20 min-h-screen flex items-center overflow-hidden">
       {/* Animated Grid Background */}
@@ -80,7 +86,7 @@ export default function HeroSection() {
                 Hi, I&apos;m <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Mugdho</span>
               </h1>
               <p className="text-xl sm:text-2xl text-slate-600 leading-relaxed max-w-lg">
-                A medical student at Sir Salimullah Medical College (All Bangladesh rank: 344, session 2025–2026) and Ex-DU Botany.
+                { heroSubtitle }
               </p>
             </motion.div>
 
@@ -92,7 +98,7 @@ export default function HeroSection() {
               className="prose prose-lg text-slate-600 space-y-4 max-w-lg"
             >
               <p className="text-lg leading-relaxed">
-                Like many of you, I once stood at the crossroads HSC ahead, medical admission dreams in my heart, and countless questions in my mind. The path wasn&apos;t easy, but every challenge taught me something valuable.
+                { heroContent}
               </p>
             </motion.div>
 

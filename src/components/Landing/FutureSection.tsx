@@ -4,30 +4,32 @@ import { motion } from 'framer-motion';
 import { BookOpen, Brain, Microscope, Heart, Sparkles, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
-const FUTURE_ITEMS = [
-  {
-    icon: BookOpen,
-    title: "Study Resources",
-    description: "Notes, strategies, and materials that actually helped me succeed"
-  },
-  {
-    icon: Brain,
-    title: "Honest Insights",
-    description: "Real experiences, honest advice, and lessons learned the hard way"
-  },
-  {
-    icon: Microscope,
-    title: "Medical Journey Logs",
-    description: "What medical college is really like, beyond the stereotypes"
-  },
-  {
-    icon: Heart,
-    title: "Community Space",
-    description: "A place where aspirants can connect, share, and grow together"
+const GetIconFromString = (icon: string): React.ElementType => {
+  switch(icon){
+    case "BookOpen":
+      return BookOpen;
+    case "Brain":
+      return Brain;
+    case "Microscope":
+      return Microscope;
+    case "Heart":
+      return Heart;
+    default:
+      return BookOpen; // Default fallback
   }
-];
+}
 
-export default function FutureSection() {
+interface FutureSectionProps {
+  futureItems: FutureItem[]
+}
+
+interface FutureItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export default function FutureSection( { futureItems } : FutureSectionProps) {
   return (
     <section id="future" className="py-20 px-4 sm:px-6 bg-linear-to-br from-slate-900 to-slate-800 text-white">
       <div className="max-w-4xl mx-auto">
@@ -51,7 +53,7 @@ export default function FutureSection() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-6 mt-12">
-            {FUTURE_ITEMS.map((item, i) => (
+            {futureItems.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -60,7 +62,10 @@ export default function FutureSection() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10"
               >
-                <item.icon className="w-8 h-8 text-blue-400 mb-4" />
+                {(() => {
+                  const IconComponent = GetIconFromString(item.icon);
+                  return <IconComponent className="w-8 h-8 text-blue-400 mb-4" />;
+                })()}
                 <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                 <p className="text-slate-300">{item.description}</p>
               </motion.div>

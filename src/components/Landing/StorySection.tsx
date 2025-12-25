@@ -18,31 +18,32 @@ const COLOR_MAP = {
   },
 } as const;
 
-const STORY_ITEMS = [
-  {
-    icon: BookOpen,
-    phase: "The Beginning",
-    title: "HSC Preparation: Finding My Way",
-    description: "Navigating the overwhelming world of HSC prep, discovering what works and what doesn't, and learning to study smarter, not just harder.",
-    color: "blue" as const
-  },
-  {
-    icon: Brain,
-    phase: "The Challenge",
-    title: "Medical Admission: The Real Test",
-    description: "Facing one of the toughest exams of my life. The strategies, the struggles, the late nights, and the unwavering determination that got me through.",
-    color: "indigo" as const
-  },
-  {
-    icon: Trophy,
-    phase: "The Milestone",
-    title: "Sir Salimullah Medical College: Living the Dream",
-    description: "Session 2025–2026. All Bangladesh ranking: 344. Finally here, but the journey doesn't end every day brings new lessons, challenges, and reasons to be grateful for this path.",
-    color: "purple" as const
+const GetIconFromString = (icon: string): React.ElementType => {
+  switch(icon){
+    case "BookOpen":
+      return BookOpen;
+    case "Brain":
+      return Brain;
+    case "Trophy":
+      return Trophy;
+    default:
+      return BookOpen; // Default fallback
   }
-];
+}
 
-export default function StorySection() {
+interface StorySectionProps {
+  storyItems: StoryItem[]
+}
+
+interface StoryItem {
+  icon: string;
+  phase: string;
+  title: string;
+  description: string;
+  color: "blue" | "indigo" | "purple";
+}
+
+export default function StorySection( { storyItems }: StorySectionProps ) {
   return (
     <section id="story" className="py-20 px-4 sm:px-6 bg-slate-50">
       <div className="max-w-4xl mx-auto">
@@ -63,7 +64,7 @@ export default function StorySection() {
 
           {/* Story Timeline */}
           <div className="space-y-8 mt-16">
-            {STORY_ITEMS.map((item, i) => (
+            {storyItems.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -30 }}
@@ -74,7 +75,10 @@ export default function StorySection() {
               >
                 <div className="flex items-start gap-4">
                   <div className={`w-12 h-12 ${COLOR_MAP[item.color].bg} rounded-xl flex items-center justify-center shrink-0`}>
-                    <item.icon className={`w-6 h-6 ${COLOR_MAP[item.color].text}`} />
+                    {(() => {
+                      const IconComponent = GetIconFromString(item.icon);
+                      return <IconComponent className={`w-6 h-6 ${COLOR_MAP[item.color].text}`} />;
+                    })()}
                   </div>
                   <div className="space-y-2">
                     <div className={`text-sm font-semibold ${COLOR_MAP[item.color].text} uppercase tracking-wide`}>
