@@ -7,7 +7,7 @@ import { Stethoscope, BookOpen, Heart, ArrowRight } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 px-4 sm:px-6 min-h-screen flex items-center overflow-hidden">
+    <section className="relative pt-32 pb-20 min-h-screen flex items-center overflow-hidden">
       {/* Animated Grid Background */}
       <div className="absolute inset-0 z-0">
         {/* Main grid */}
@@ -54,7 +54,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-white/50" />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-7xl mx-auto w-full relative z-10 px-4 sm:px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="space-y-8 order-2 md:order-1 flex flex-col items-center text-center md:items-start md:text-left">

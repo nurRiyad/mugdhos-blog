@@ -34,7 +34,7 @@ export default function Navigation() {
       ref={navRef}
       className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-100"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center h-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}

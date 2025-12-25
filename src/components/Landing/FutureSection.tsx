@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { BookOpen, Brain, Microscope, Heart, Sparkles, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 const FUTURE_ITEMS = [
   {
@@ -70,14 +71,16 @@ export default function FutureSection() {
             <p className="text-slate-300 mb-6">
               This is just the beginning. Stay tuned for updates, stories, and resources.
             </p>
+            <Link href={"/blogs"}>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-white text-slate-900 rounded-xl font-semibold inline-flex items-center gap-2"
             >
-              Follow the Journey
+              Follow the Story
               <ChevronRight className="w-5 h-5" />
             </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>
