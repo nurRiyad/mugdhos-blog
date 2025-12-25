@@ -5,6 +5,8 @@ import { client } from '../../../sanity/client'
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Navigation from "@/src/components/Landing/Navigation";
+import FooterSection from "@/src/components/Landing/FooterSection";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -32,29 +34,66 @@ export default async function PostPage({
     : null;
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-      <Link href="/blogs" className="hover:underline text-blue-600 mb-4 inline-block">
-        ← Back to posts
-      </Link>
-      {postImageUrl && (
-        <Image
-          src={postImageUrl}
-          alt={post.title || "Blog post image"}
-          className="aspect-video rounded-xl object-cover"
-          width={550}
-          height={310}
-          priority
-        />
-      )}
-      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-      <div className="flex flex-col gap-2 mb-8">
-        <p className="text-slate-500 italic">
-          Published: {new Date(post.publishedAt || post._createdAt).toLocaleDateString()}
-        </p>
-      </div>
-      <article className="prose prose-blue prose-lg max-w-none dark:prose-invert">
-        {Array.isArray(post.body) && <PortableText value={post.body} />}
-      </article>
-    </main>
+    <div className="min-h-screen bg-white overflow-x-hidden">
+      <Navigation />
+
+      <main className="pt-28 pb-20 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto">
+          {/* Breadcrumbs */}
+          <nav className="text-sm text-slate-500 mb-6">
+            <Link href="/" className="hover:underline hover:text-slate-900">
+              Home
+            </Link>
+            <span className="mx-2">/</span>
+            <Link href="/blogs" className="hover:underline hover:text-slate-900">
+              Blogs
+            </Link>
+            <span className="mx-2">/</span>
+            <span className="text-slate-700">{post.title || "Post"}</span>
+          </nav>
+
+          <Link
+            href="/blogs"
+            className="inline-block text-blue-600 hover:underline mb-6 font-medium"
+          >
+            ← Back to posts
+          </Link>
+
+          {/* Header card */}
+          <header className="bg-slate-50 rounded-2xl border border-slate-200 p-7 sm:p-10">
+            <p className="text-sm font-semibold text-blue-600">
+              {new Date(post.publishedAt || post._createdAt).toLocaleDateString()}
+            </p>
+            <h1 className="mt-2 text-3xl sm:text-5xl font-bold text-slate-900 leading-tight">
+              {post.title}
+            </h1>
+          </header>
+
+          {postImageUrl && (
+            <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
+              <Image
+                src={postImageUrl}
+                alt={post.title || "Blog post image"}
+                className="w-full aspect-video object-cover"
+                width={1100}
+                height={620}
+                priority
+              />
+            </div>
+          )}
+
+          {/* 
+            Blog body:
+            - Use Tailwind Typography for sane defaults
+            - Force readable slate colors since page background is white even in system dark mode
+          */}
+          <article className="prose prose-slate prose-lg max-w-none mt-10 text-slate-900 prose-headings:text-slate-900 prose-p:text-slate-700 prose-li:text-slate-700 prose-strong:text-slate-900 prose-a:text-blue-600 prose-a:font-semibold prose-a:no-underline hover:prose-a:underline">
+            {Array.isArray(post.body) && <PortableText value={post.body} />}
+          </article>
+        </div>
+      </main>
+
+      <FooterSection />
+    </div>
   );
 }

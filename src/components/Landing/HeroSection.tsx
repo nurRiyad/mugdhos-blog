@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Stethoscope, BookOpen, Heart, ArrowRight } from 'lucide-react';
 
@@ -102,13 +103,19 @@ export default function HeroSection() {
               transition={{ delay: 0.5 }}
               className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4"
             >
-              <a href="#story" className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all">
+              <Link
+                href="/blogs"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all"
+              >
                 Read my story
                 <ArrowRight className="w-5 h-5" />
-              </a>
-              <a href="#journey" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 rounded-xl font-semibold border-2 border-slate-200 hover:border-slate-300 transition-all">
+              </Link>
+              <Link
+                href="/#journey"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 rounded-xl font-semibold border-2 border-slate-200 hover:border-slate-300 transition-all"
+              >
                 Explore journey
-              </a>
+              </Link>
             </motion.div>
           </div>
 
