@@ -80,7 +80,7 @@ export default function HeroSection() {
                 Hi, I&apos;m <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Mugdho</span>
               </h1>
               <p className="text-xl sm:text-2xl text-slate-600 leading-relaxed max-w-lg">
-                A medical student who turned struggles into strategies, confusion into clarity, and dreams into reality.
+                A medical student at Sir Salimullah Medical College (All Bangladesh rank: 344, session 2025–2026) and Ex-DU Botany. Turning struggles into strategies, confusion into clarity, and dreams into reality.
               </p>
             </motion.div>
 

@@ -1,12 +1,10 @@
 import { PortableText, type SanityDocument } from "next-sanity";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
+import { notFound } from "next/navigation";
 import { client } from '../../../sanity/client'
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
-import Navigation from "@/src/components/Landing/Navigation";
-import FooterSection from "@/src/components/Landing/FooterSection";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -35,8 +33,6 @@ export default async function PostPage({
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <Navigation />
-
       <main className="pt-28 pb-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumbs */}
@@ -92,8 +88,6 @@ export default async function PostPage({
           </article>
         </div>
       </main>
-
-      <FooterSection />
     </div>
   );
 }

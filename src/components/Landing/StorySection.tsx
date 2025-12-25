@@ -23,7 +23,7 @@ const STORY_ITEMS = [
     icon: BookOpen,
     phase: "The Beginning",
     title: "HSC Preparation: Finding My Way",
-    description: "Navigating the overwhelming world of HSC prep, discovering what works and what doesn&apos;t, and learning to study smarter, not just harder.",
+    description: "Navigating the overwhelming world of HSC prep, discovering what works and what doesn't, and learning to study smarter, not just harder.",
     color: "blue" as const
   },
   {
@@ -36,8 +36,8 @@ const STORY_ITEMS = [
   {
     icon: Trophy,
     phase: "The Milestone",
-    title: "Medical College: Living the Dream",
-    description: "Finally here, but the journey doesn&apos;t end. Every day brings new lessons, challenges, and reasons to be grateful for this path.",
+    title: "Sir Salimullah Medical College: Living the Dream",
+    description: "Session 2025–2026. All Bangladesh ranking: 344. Finally here, but the journey doesn't end every day brings new lessons, challenges, and reasons to be grateful for this path.",
     color: "purple" as const
   }
 ];

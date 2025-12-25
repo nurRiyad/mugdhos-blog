@@ -42,12 +42,6 @@ export default function Navigation() {
               My Story
             </Link>
             <Link
-              href="/#journey"
-              className="text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              The Journey
-            </Link>
-            <Link
               href="/#future"
               className="text-slate-600 hover:text-slate-900 transition-colors"
             >

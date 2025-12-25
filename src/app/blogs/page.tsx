@@ -1,11 +1,9 @@
-import { type SanityDocument } from "next-sanity";
+import BlogListClient, { type BlogListItem } from "./components/BlogListClient";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
-
+import { type SanityDocument } from "next-sanity";
 import { client } from '../../sanity/client'
-import Navigation from "@/src/components/Landing/Navigation";
-import FooterSection from "@/src/components/Landing/FooterSection";
-import BlogListClient, { type BlogListItem } from "./components/BlogListClient";
+
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -42,8 +40,6 @@ export default async function IndexPage() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <Navigation />
-
       <main className="pt-28 pb-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Hero */}
@@ -61,8 +57,6 @@ export default async function IndexPage() {
           <BlogListClient posts={items} />
         </div>
       </main>
-
-      <FooterSection />
     </div>
   );
 }
