@@ -2,6 +2,7 @@ import BlogListClient, { type BlogListItem } from "./components/BlogListClient";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
 import { type SanityDocument } from "next-sanity";
+import type { Metadata } from "next";
 import { client } from '../../sanity/client'
 
 
@@ -11,6 +12,37 @@ const POSTS_QUERY = `*[
 ]|order(publishedAt desc)[0...50]{_id, title, slug, publishedAt, _createdAt, image}`;
 
 const options = { next: { revalidate: 30 } };
+
+export const metadata: Metadata = {
+  title: "Blogs",
+  description:
+    "Read blogs, notes, and real-life lessons from Mugdho — built for HSC students, medical admission aspirants, and junior med students.",
+  alternates: {
+    canonical: "/blogs",
+  },
+  openGraph: {
+    type: "website",
+    url: "/blogs",
+    title: "Blogs | Learn With Mugdho",
+    description:
+      "Blogs, notes, and real-life lessons for HSC & medical admission aspirants.",
+    images: [
+      {
+        url: "/image.png",
+        width: 1200,
+        height: 630,
+        alt: "Learn With Mugdho - Blogs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blogs | Learn With Mugdho",
+    description:
+      "Blogs, notes, and real-life lessons for HSC & medical admission aspirants.",
+    images: ["/image.png"],
+  },
+};
 
 export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);

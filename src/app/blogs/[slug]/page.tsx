@@ -5,8 +5,18 @@ import { notFound } from "next/navigation";
 import { client } from '../../../sanity/client'
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+import { portableTextToPlainText, getPostSeoTitle } from "@/src/lib/seo";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
+const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
+  _id,
+  title,
+  slug,
+  publishedAt,
+  _createdAt,
+  image,
+  body
+}`;
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
@@ -15,6 +25,74 @@ const urlFor = (source: SanityImageSource) =>
     : null;
 
 const options = { next: { revalidate: 30 } };
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+
+  const post = await client.fetch<SanityDocument | null>(
+    POST_QUERY,
+    { slug },
+    options
+  );
+
+  if (!post) {
+    return {
+      title: "Post not found",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const title = getPostSeoTitle(post);
+  const description =
+    portableTextToPlainText(post.body, 160) ||
+    "Read this post on Learn With Mugdho — insights for HSC & medical admission aspirants.";
+
+  const ogImage =
+    post.image && urlFor(post.image)
+      ? urlFor(post.image)?.width(1200).height(630).fit("crop").url()
+      : "/image.png";
+
+  const publishedTime = (post.publishedAt || post._createdAt) as string | undefined;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/blogs/${slug}`,
+    },
+    openGraph: {
+      type: "article",
+      url: `/blogs/${slug}`,
+      title,
+      description,
+      images: [
+        typeof ogImage === "string"
+          ? {
+              url: ogImage,
+              width: 1200,
+              height: 630,
+              alt: title,
+            }
+          : {
+              url: "/image.png",
+              width: 1200,
+              height: 630,
+              alt: title,
+            },
+      ],
+      publishedTime,
+      authors: ["Mugdho"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [typeof ogImage === "string" ? ogImage : "/image.png"],
+    },
+  };
+}
 
 export default async function PostPage({
   params,
