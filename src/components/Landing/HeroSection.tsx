@@ -147,6 +147,7 @@ export default function HeroSection({ heroTitle, heroSubtitle, heroContent }: He
                   src="/image.png"
                   alt="Mugdho"
                   fill
+                  sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
                   className="object-cover rounded-3xl"
                   priority
                 />
